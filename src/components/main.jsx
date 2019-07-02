@@ -1,23 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {add} from '../actions/actions'
+import './main.css'
 
-const Main = ({picture, add, id}) => {
+const Main = ({picture, add, date, arr}) => {
+
     return (
-        <div className="jumbotron">
+      <div className="ui two column centered grid">
+        <div className="column centered">
+        <div className="line">
         <img src={picture}></img>
-        <h1>{id}</h1>
+        </div>
+        <p></p>
+        <div className="ui two column centered grid">
         <button
         onClick={add}
-        className="btn btn-primary btn-lg">Загрузить</button>
+        className="ui violet button">Загрузить</button>
+        </div>
+      </div>
       </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-      picture: state.arrPictures.picture,
-      id: state.arrPictures.id
+      picture: state.onePicture.picture,
+      date: state.onePicture.date,
     }
   }
 

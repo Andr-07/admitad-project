@@ -1,15 +1,24 @@
 const initialState = {
-    arrPictures: '',
-  } 
+  onePicture: "",
+  arrPictures: []
+};
 
-  export default function(state = initialState, action) {
-    switch (action.type) {
-      case "ADD": {
-        return {
-          arrPictures: action.payload,
-        };
-      }
-      default:
-      return state;
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case "ADD": {
+      return {
+        onePicture: action.payload,
+        arrPictures: [...state.arrPictures, action.payload]
+      };
     }
+    case "DEL": {
+      let oldArr = state.arrPictures;
+      return {
+        arrPictures: oldArr.filter(item => item.title !== action.payload.title),
+        onePicture: action.payload
+      };
+    }
+    default:
+      return state;
+  }
 }
